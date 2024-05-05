@@ -5,15 +5,15 @@ import { OrderDto } from './app.dto';
 export class AppService {
   private orders: OrderDto[] = [];
 
-  getProducts(): OrderDto[] {
+  getOrders(): OrderDto[] {
     return this.orders;
   }
 
-  getProductById(@Param('id') id: string) {
+  getOrderById(@Param('id') id: string) {
     return this.orders.find((order) => order.id === id);
   }
 
-  createProduct(@Body() orderDto: OrderDto) {
+  createOrder(@Body() orderDto: OrderDto) {
     const orderData = new OrderDto(
       orderDto.id,
       orderDto.orderId,
@@ -27,7 +27,7 @@ export class AppService {
     return orderData;
   }
 
-  updateProduct(@Param('id') id: string, @Body() orderDto: OrderDto) {
+  updateOrder(@Param('id') id: string, @Body() orderDto: OrderDto) {
     const orderData = new OrderDto(
       orderDto.id,
       orderDto.orderId,
@@ -46,12 +46,12 @@ export class AppService {
     return null;
   }
 
-  deleteProduct(@Param('id') id: string) {
+  deleteOrder(@Param('id') id: string) {
     const index = this.orders.findIndex((order) => order.id === id);
     if (index !== -1) {
-      const deletedProduct = this.orders[index];
+      const deletedOrder = this.orders[index];
       this.orders.splice(index, 1);
-      return deletedProduct;
+      return deletedOrder;
     }
     return null;
   }
