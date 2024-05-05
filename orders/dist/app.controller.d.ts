@@ -6,6 +6,6 @@ export declare class AppController {
     getOrders(): OrderDto[];
     getOrderById(id: string): OrderDto;
     createOrder(orderDto: OrderDto): any;
-    updateOrder(id: string, orderDto: OrderDto): any;
+    updateOrder(data: any): any;
     deleteOrder(id: string): any;
 }

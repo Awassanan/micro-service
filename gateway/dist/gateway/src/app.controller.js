@@ -16,7 +16,6 @@ exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const rxjs_1 = require("rxjs");
-const app_dto_1 = require("../../orders/src/app.dto");
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
@@ -159,7 +158,7 @@ __decorate([
     (0, common_1.Post)('orders'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [app_dto_1.OrderDto]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], AppController.prototype, "creatOrder", null);
 __decorate([
@@ -167,7 +166,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, app_dto_1.OrderDto]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], AppController.prototype, "updateOrder", null);
 __decorate([

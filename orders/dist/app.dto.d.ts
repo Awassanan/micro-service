@@ -1,4 +1,4 @@
-export declare class OrderDto {
+export interface OrderDto {
     id: string;
     orderId: string;
     userId: string;
@@ -6,5 +6,6 @@ export declare class OrderDto {
     quantity: number;
     orderDate: string;
     discount: number;
-    constructor(id: string, orderId: string, userId: string, productId: string, quantity: number, orderDate: string, discount: number);
+    paymentChannel: string;
+    destinationAddress: string;
 }

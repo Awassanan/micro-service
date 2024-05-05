@@ -1,4 +1,4 @@
-import { Body, Injectable, Param } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { OrderDto } from './app.dto';
 
 @Injectable()
@@ -9,16 +9,20 @@ export class AppService {
     return this.orders;
   }
 
-  getOrderById(@Param('id') id: string) {
-    return this.orders.find((order) => order.id === id);
+  getOrderById(id: string) {
+    const foundOrder = this.orders.find((order) => order.id === id);
+    if (!foundOrder) {
+      return null;
+    }
+    return foundOrder;
   }
 
-  createOrder(@Body() orderDto: OrderDto) {
+  createOrder(orderDto: OrderDto) {
     this.orders.push(orderDto);
     return orderDto;
   }
 
-  updateOrder(@Param('id') id: string, @Body() orderDto: OrderDto) {
+  updateOrder(id: string, orderDto: OrderDto) {
     const index = this.orders.findIndex((order) => order.id === id);
     if (index !== -1) {
       this.orders[index] = orderDto;
@@ -27,7 +31,7 @@ export class AppService {
     return null;
   }
 
-  deleteOrder(@Param('id') id: string) {
+  deleteOrder(id: string) {
     const index = this.orders.findIndex((order) => order.id === id);
     if (index !== -1) {
       const deletedOrder = this.orders[index];
