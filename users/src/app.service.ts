@@ -14,34 +14,15 @@ export class AppService {
   }
 
   createUser(@Body() userDto: UserDto) {
-    const userData = new UserDto(
-      userDto.id,
-      userDto.firstName,
-      userDto.lastName,
-      userDto.dateOfBirth,
-      userDto.address,
-      userDto.email,
-      userDto.phone,
-    );
-    this.users.push(userData);
-    return userData;
+    this.users.push(userDto);
+    return userDto;
   }
 
   updateUser(@Param('id') id: string, @Body() userDto: UserDto) {
-    const userData = new UserDto(
-      userDto.id,
-      userDto.firstName,
-      userDto.lastName,
-      userDto.dateOfBirth,
-      userDto.address,
-      userDto.email,
-      userDto.phone,
-    );
-
     const index = this.users.findIndex((user) => user.id === id);
     if (index !== -1) {
-      this.users[index] = userData;
-      return userData;
+      this.users[index] = userDto;
+      return userDto;
     }
     return null;
   }

@@ -13,10 +13,6 @@ export class AppService {
     @Inject('ORDER_SERVICE') private readonly orderClient: ClientProxy,
   ) {}
 
-  getHello(): string {
-    return 'Hello World!';
-  }
-
   // user
   getUsers(): Observable<UserDto[]> {
     return this.userClient.send({ cmd: 'get/users' }, {});

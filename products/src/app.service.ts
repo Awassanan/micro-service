@@ -14,32 +14,15 @@ export class AppService {
   }
 
   createProduct(@Body() productDto: ProductDto) {
-    const productData = new ProductDto(
-      productDto.id,
-      productDto.name,
-      productDto.detail,
-      productDto.price,
-      productDto.stock,
-      productDto.category,
-    );
-    this.products.push(productData);
-    return productData;
+    this.products.push(productDto);
+    return productDto;
   }
 
   updateProduct(@Param('id') id: string, @Body() productDto: ProductDto) {
-    const productData = new ProductDto(
-      productDto.id,
-      productDto.name,
-      productDto.detail,
-      productDto.price,
-      productDto.stock,
-      productDto.category,
-    );
-
     const index = this.products.findIndex((product) => product.id === id);
     if (index !== -1) {
-      this.products[index] = productData;
-      return productData;
+      this.products[index] = productDto;
+      return productDto;
     }
     return null;
   }

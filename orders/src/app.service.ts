@@ -14,34 +14,15 @@ export class AppService {
   }
 
   createOrder(@Body() orderDto: OrderDto) {
-    const orderData = new OrderDto(
-      orderDto.id,
-      orderDto.orderId,
-      orderDto.userId,
-      orderDto.productId,
-      orderDto.quantity,
-      orderDto.orderDate,
-      orderDto.discount,
-    );
-    this.orders.push(orderData);
-    return orderData;
+    this.orders.push(orderDto);
+    return orderDto;
   }
 
   updateOrder(@Param('id') id: string, @Body() orderDto: OrderDto) {
-    const orderData = new OrderDto(
-      orderDto.id,
-      orderDto.orderId,
-      orderDto.userId,
-      orderDto.productId,
-      orderDto.quantity,
-      orderDto.orderDate,
-      orderDto.discount,
-    );
-
     const index = this.orders.findIndex((order) => order.id === id);
     if (index !== -1) {
-      this.orders[index] = orderData;
-      return orderData;
+      this.orders[index] = orderDto;
+      return orderDto;
     }
     return null;
   }

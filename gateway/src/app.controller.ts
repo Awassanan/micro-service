@@ -17,11 +17,6 @@ import { OrderDto } from '../../orders/src/app.dto';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
   // users
   @Get('users')
   getUsers(): Observable<UserDto[]> {
