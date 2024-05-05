@@ -14,7 +14,6 @@ export class AppController {
 
   @MessagePattern({ cmd: 'get/users/id' })
   getUserById(id: string): UserDto {
-    console.log('id in user contoller: ' + id);
     return this.appService.getUserById(id);
   }
 

@@ -30,8 +30,6 @@ let AppController = class AppController {
         return this.appService.createUser(userDto);
     }
     updateUser(id, userDto) {
-        console.log('id in update user in gateway contoller: ', id);
-        console.log('dto in update user in gateway controller: ', userDto);
         return this.appService.updateUser(id, userDto);
     }
     deleteUser(id) {

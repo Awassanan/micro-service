@@ -25,7 +25,6 @@ let AppService = class AppService {
         return this.userClient.send({ cmd: 'get/users' }, {});
     }
     getUserById(id) {
-        console.log('id in gateway service', id);
         return this.userClient.send({ cmd: 'get/users/id' }, id);
     }
     createUser(userDto) {

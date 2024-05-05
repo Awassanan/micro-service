@@ -19,7 +19,6 @@ export class AppService {
   }
 
   getUserById(id: string): Observable<UserDto> {
-    console.log('id in gateway service', id);
     return this.userClient.send({ cmd: 'get/users/id' }, id);
   }
 

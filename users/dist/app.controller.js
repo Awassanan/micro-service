@@ -21,7 +21,6 @@ let AppController = class AppController {
         return this.appService.getUsers();
     }
     getUserById(id) {
-        console.log('id in user contoller: ' + id);
         return this.appService.getUserById(id);
     }
     createUser(userDto) {
