@@ -1,4 +1,4 @@
-import { Body, Controller, Param } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern } from '@nestjs/microservices';
 import { UserDto } from './app.dto';
@@ -13,22 +13,25 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'get/users/id' })
-  getUserById(@Param('id') id: string): UserDto {
+  getUserById(id: string): UserDto {
+    console.log('id in user contoller: ' + id);
     return this.appService.getUserById(id);
   }
 
   @MessagePattern({ cmd: 'post/users' })
-  createUser(@Body() userDto: UserDto): any {
+  createUser(userDto: UserDto): any {
     return this.appService.createUser(userDto);
   }
 
   @MessagePattern({ cmd: 'put/users/id' })
-  updateUser(@Param('id') id: string, @Body() userDto: UserDto): any {
-    return this.appService.updateUser(id, userDto);
+  updateUser(data: any): any {
+    console.log('id in update user in user contoller: ', data.id);
+    console.log('dto in update user in user controller: ', data.userDto);
+    return this.appService.updateUser(data.id, data.userDto);
   }
 
   @MessagePattern({ cmd: 'delete/users/id' })
-  deleteUser(@Param('id') id: string): any {
+  deleteUser(id: string): any {
     return this.appService.deleteUser(id);
   }
 }

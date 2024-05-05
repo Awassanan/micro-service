@@ -6,6 +6,6 @@ export declare class AppController {
     getUsers(): UserDto[];
     getUserById(id: string): UserDto;
     createUser(userDto: UserDto): any;
-    updateUser(id: string, userDto: UserDto): any;
+    updateUser(data: any): any;
     deleteUser(id: string): any;
 }

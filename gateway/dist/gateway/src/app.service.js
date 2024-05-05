@@ -15,10 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
-const rxjs_1 = require("rxjs");
-const app_dto_1 = require("../../users/src/app.dto");
-const app_dto_2 = require("../../products/src/app.dto");
-const app_dto_3 = require("../../orders/src/app.dto");
 let AppService = class AppService {
     constructor(userClient, productClient, orderClient) {
         this.userClient = userClient;
@@ -29,124 +25,52 @@ let AppService = class AppService {
         return this.userClient.send({ cmd: 'get/users' }, {});
     }
     getUserById(id) {
-        return this.userClient.send({ cmd: 'get/users/id' }, { id });
+        console.log('id in gateway service', id);
+        return this.userClient.send({ cmd: 'get/users/id' }, id);
     }
     createUser(userDto) {
-        return this.userClient.send({ cmd: 'post/users' }, { userDto });
+        return this.userClient.send({ cmd: 'post/users' }, userDto);
     }
     updateUser(id, userDto) {
+        console.log('id in update user in gateway service: ', id);
+        console.log('dto in update user in gateway service: ', userDto);
         return this.userClient.send({ cmd: 'put/users/id' }, { id, userDto });
     }
     deleteUser(id) {
-        return this.userClient.send({ cmd: 'delete/users/id' }, { id });
+        return this.userClient.send({ cmd: 'delete/users/id' }, id);
     }
     getProducts() {
         return this.productClient.send({ cmd: 'get/products' }, {});
     }
     getProductById(id) {
-        return this.productClient.send({ cmd: 'get/products/id' }, { id });
+        return this.productClient.send({ cmd: 'get/products/id' }, id);
     }
     createProduct(productDto) {
-        return this.productClient.send({ cmd: 'post/products' }, { productDto });
+        return this.productClient.send({ cmd: 'post/products' }, productDto);
     }
     updateProduct(id, productDto) {
         return this.productClient.send({ cmd: 'put/products/id' }, { id, productDto });
     }
     deleteProduct(id) {
-        return this.productClient.send({ cmd: 'delete/products/id' }, { id });
+        return this.productClient.send({ cmd: 'delete/products/id' }, id);
     }
     getOrders() {
         return this.orderClient.send({ cmd: 'get/orders' }, {});
     }
     getOrderById(id) {
-        return this.orderClient.send({ cmd: 'get/orders/id' }, { id });
+        return this.orderClient.send({ cmd: 'get/orders/id' }, id);
     }
     createOrder(orderDto) {
-        return this.orderClient.send({ cmd: 'post/orders' }, { orderDto });
+        return this.orderClient.send({ cmd: 'post/orders' }, orderDto);
     }
     updateOrder(id, orderDto) {
-        return this.orderClient.send({ cmd: 'put/orders/id' }, { id, orderDto });
+        return this.orderClient.send({ cmd: 'put/orders/id' }, { id: id, orderDto: orderDto });
     }
     deleteOrder(id) {
-        return this.orderClient.send({ cmd: 'delete/orders/id' }, { id });
+        return this.orderClient.send({ cmd: 'delete/orders/id' }, id);
     }
 };
 exports.AppService = AppService;
-__decorate([
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "getUserById", null);
-__decorate([
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [app_dto_1.UserDto]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "createUser", null);
-__decorate([
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, app_dto_1.UserDto]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "updateUser", null);
-__decorate([
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "deleteUser", null);
-__decorate([
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "getProductById", null);
-__decorate([
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [app_dto_2.ProductDto]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "createProduct", null);
-__decorate([
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, app_dto_2.ProductDto]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "updateProduct", null);
-__decorate([
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "deleteProduct", null);
-__decorate([
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "getOrderById", null);
-__decorate([
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [app_dto_3.OrderDto]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "createOrder", null);
-__decorate([
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, app_dto_3.OrderDto]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "updateOrder", null);
-__decorate([
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", rxjs_1.Observable)
-], AppService.prototype, "deleteOrder", null);
 exports.AppService = AppService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)('USER_SERVICE')),

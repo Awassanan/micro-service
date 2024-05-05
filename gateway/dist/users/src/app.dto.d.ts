@@ -1,4 +1,4 @@
-export declare class UserDto {
+export interface UserDto {
     id: string;
     firstName: string;
     lastName: string;
@@ -6,5 +6,4 @@ export declare class UserDto {
     address: string;
     email: string;
     phone: string;
-    constructor(id: string, firstName: string, lastname: string, dateOfBirth: string, address: string, email: string, phone: string);
 }

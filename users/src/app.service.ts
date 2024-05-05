@@ -1,4 +1,4 @@
-import { Body, Injectable, Param } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserDto } from './app.dto';
 
 @Injectable()
@@ -6,20 +6,29 @@ export class AppService {
   private users: UserDto[] = [];
 
   getUsers(): UserDto[] {
+    console.log(this.users);
     return this.users;
   }
 
-  getUserById(@Param('id') id: string) {
-    return this.users.find((user) => user.id === id);
+  getUserById(id: string): UserDto {
+    console.log('id in user service: ', id);
+    console.log(this.users.find((user) => user.id === id));
+    const foundUser = this.users.find((user) => user.id === id);
+    if (!foundUser) {
+      return null;
+    }
+    return foundUser;
   }
 
-  createUser(@Body() userDto: UserDto) {
+  createUser(userDto: UserDto) {
     this.users.push(userDto);
     return userDto;
   }
 
-  updateUser(@Param('id') id: string, @Body() userDto: UserDto) {
-    const index = this.users.findIndex((user) => user.id === id);
+  updateUser(id: string, userDto: UserDto) {
+    console.log('id in update user in user service: ', id);
+    console.log('dto in update user in user service: ', userDto);
+    const index = this.users.findIndex((user: UserDto) => user.id === id);
     if (index !== -1) {
       this.users[index] = userDto;
       return userDto;
@@ -27,7 +36,7 @@ export class AppService {
     return null;
   }
 
-  deleteUser(@Param('id') id: string) {
+  deleteUser(id: string) {
     const index = this.users.findIndex((user) => user.id === id);
     if (index !== -1) {
       const deletedUser = this.users[index];

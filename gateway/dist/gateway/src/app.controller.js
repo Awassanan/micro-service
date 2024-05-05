@@ -16,9 +16,8 @@ exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const rxjs_1 = require("rxjs");
-const app_dto_1 = require("../../users/src/app.dto");
-const app_dto_2 = require("../../products/src/app.dto");
-const app_dto_3 = require("../../orders/src/app.dto");
+const app_dto_1 = require("../../products/src/app.dto");
+const app_dto_2 = require("../../orders/src/app.dto");
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
@@ -27,12 +26,16 @@ let AppController = class AppController {
         return this.appService.getUsers();
     }
     getUserById(id) {
+        console.log('id in gateway contoller: ' + id);
+        console.log(typeof id);
         return this.appService.getUserById(id);
     }
     creatUser(userDto) {
         return this.appService.createUser(userDto);
     }
     updateUser(id, userDto) {
+        console.log('id in update user in gateway contoller: ', id);
+        console.log('dto in update user in gateway controller: ', userDto);
         return this.appService.updateUser(id, userDto);
     }
     deleteUser(id) {
@@ -87,7 +90,7 @@ __decorate([
     (0, common_1.Post)('users'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [app_dto_1.UserDto]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], AppController.prototype, "creatUser", null);
 __decorate([
@@ -95,7 +98,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, app_dto_1.UserDto]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], AppController.prototype, "updateUser", null);
 __decorate([
@@ -122,7 +125,7 @@ __decorate([
     (0, common_1.Post)('products'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [app_dto_2.ProductDto]),
+    __metadata("design:paramtypes", [app_dto_1.ProductDto]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], AppController.prototype, "creatProduct", null);
 __decorate([
@@ -130,7 +133,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, app_dto_2.ProductDto]),
+    __metadata("design:paramtypes", [String, app_dto_1.ProductDto]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], AppController.prototype, "updateProduct", null);
 __decorate([
@@ -157,7 +160,7 @@ __decorate([
     (0, common_1.Post)('orders'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [app_dto_3.OrderDto]),
+    __metadata("design:paramtypes", [app_dto_2.OrderDto]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], AppController.prototype, "creatOrder", null);
 __decorate([
@@ -165,7 +168,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, app_dto_3.OrderDto]),
+    __metadata("design:paramtypes", [String, app_dto_2.OrderDto]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], AppController.prototype, "updateOrder", null);
 __decorate([

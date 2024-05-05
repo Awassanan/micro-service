@@ -25,6 +25,8 @@ export class AppController {
 
   @Get('users/:id')
   getUserById(@Param('id') id: string): Observable<UserDto> {
+    console.log('id in gateway contoller: ' + id);
+    console.log(typeof id);
     return this.appService.getUserById(id);
   }
 
@@ -38,6 +40,8 @@ export class AppController {
     @Param('id') id: string,
     @Body() userDto: UserDto,
   ): Observable<UserDto> {
+    console.log('id in update user in gateway contoller: ', id);
+    console.log('dto in update user in gateway controller: ', userDto);
     return this.appService.updateUser(id, userDto);
   }
 

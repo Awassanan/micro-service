@@ -1,4 +1,4 @@
-import { Body, Inject, Injectable, Param } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 import { UserDto } from '../../users/src/app.dto';
@@ -18,23 +18,23 @@ export class AppService {
     return this.userClient.send({ cmd: 'get/users' }, {});
   }
 
-  getUserById(@Param('id') id: string): Observable<UserDto> {
-    return this.userClient.send({ cmd: 'get/users/id' }, { id });
+  getUserById(id: string): Observable<UserDto> {
+    console.log('id in gateway service', id);
+    return this.userClient.send({ cmd: 'get/users/id' }, id);
   }
 
-  createUser(@Body() userDto: UserDto): Observable<any> {
-    return this.userClient.send({ cmd: 'post/users' }, { userDto });
+  createUser(userDto: UserDto): Observable<any> {
+    return this.userClient.send({ cmd: 'post/users' }, userDto);
   }
 
-  updateUser(
-    @Param('id') id: string,
-    @Body() userDto: UserDto,
-  ): Observable<any> {
+  updateUser(id: string, userDto: UserDto): Observable<any> {
+    console.log('id in update user in gateway service: ', id);
+    console.log('dto in update user in gateway service: ', userDto);
     return this.userClient.send({ cmd: 'put/users/id' }, { id, userDto });
   }
 
-  deleteUser(@Param('id') id: string): Observable<any> {
-    return this.userClient.send({ cmd: 'delete/users/id' }, { id });
+  deleteUser(id: string): Observable<any> {
+    return this.userClient.send({ cmd: 'delete/users/id' }, id);
   }
 
   // product
@@ -42,26 +42,23 @@ export class AppService {
     return this.productClient.send({ cmd: 'get/products' }, {});
   }
 
-  getProductById(@Param('id') id: string): Observable<ProductDto> {
-    return this.productClient.send({ cmd: 'get/products/id' }, { id });
+  getProductById(id: string): Observable<ProductDto> {
+    return this.productClient.send({ cmd: 'get/products/id' }, id);
   }
 
-  createProduct(@Body() productDto: ProductDto): Observable<any> {
-    return this.productClient.send({ cmd: 'post/products' }, { productDto });
+  createProduct(productDto: ProductDto): Observable<any> {
+    return this.productClient.send({ cmd: 'post/products' }, productDto);
   }
 
-  updateProduct(
-    @Param('id') id: string,
-    @Body() productDto: ProductDto,
-  ): Observable<any> {
+  updateProduct(id: string, productDto: ProductDto): Observable<any> {
     return this.productClient.send(
       { cmd: 'put/products/id' },
       { id, productDto },
     );
   }
 
-  deleteProduct(@Param('id') id: string): Observable<any> {
-    return this.productClient.send({ cmd: 'delete/products/id' }, { id });
+  deleteProduct(id: string): Observable<any> {
+    return this.productClient.send({ cmd: 'delete/products/id' }, id);
   }
 
   //order
@@ -69,22 +66,22 @@ export class AppService {
     return this.orderClient.send({ cmd: 'get/orders' }, {});
   }
 
-  getOrderById(@Param('id') id: string): Observable<OrderDto> {
-    return this.orderClient.send({ cmd: 'get/orders/id' }, { id });
+  getOrderById(id: string): Observable<OrderDto> {
+    return this.orderClient.send({ cmd: 'get/orders/id' }, id);
   }
 
-  createOrder(@Body() orderDto: OrderDto): Observable<any> {
-    return this.orderClient.send({ cmd: 'post/orders' }, { orderDto });
+  createOrder(orderDto: OrderDto): Observable<any> {
+    return this.orderClient.send({ cmd: 'post/orders' }, orderDto);
   }
 
-  updateOrder(
-    @Param('id') id: string,
-    @Body() orderDto: OrderDto,
-  ): Observable<any> {
-    return this.orderClient.send({ cmd: 'put/orders/id' }, { id, orderDto });
+  updateOrder(id: string, orderDto: OrderDto): Observable<any> {
+    return this.orderClient.send(
+      { cmd: 'put/orders/id' },
+      { id: id, orderDto: orderDto },
+    );
   }
 
-  deleteOrder(@Param('id') id: string): Observable<any> {
-    return this.orderClient.send({ cmd: 'delete/orders/id' }, { id });
+  deleteOrder(id: string): Observable<any> {
+    return this.orderClient.send({ cmd: 'delete/orders/id' }, id);
   }
 }
