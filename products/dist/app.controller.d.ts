@@ -6,6 +6,6 @@ export declare class AppController {
     getProducts(): ProductDto[];
     getProductById(id: string): ProductDto;
     createProduct(productDto: ProductDto): any;
-    updateProduct(id: string, productDto: ProductDto): any;
+    updateProduct(data: any): any;
     deleteProduct(id: string): any;
 }

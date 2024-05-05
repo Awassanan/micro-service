@@ -1,4 +1,4 @@
-import { Body, Controller, Param } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern } from '@nestjs/microservices';
 import { ProductDto } from './app.dto';
@@ -13,22 +13,22 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'get/products/id' })
-  getProductById(@Param('id') id: string): ProductDto {
+  getProductById(id: string): ProductDto {
     return this.appService.getProductById(id);
   }
 
   @MessagePattern({ cmd: 'post/products' })
-  createProduct(@Body() productDto: ProductDto): any {
+  createProduct(productDto: ProductDto): any {
     return this.appService.createProduct(productDto);
   }
 
   @MessagePattern({ cmd: 'put/products/id' })
-  updateProduct(@Param('id') id: string, @Body() productDto: ProductDto): any {
-    return this.appService.updateProduct(id, productDto);
+  updateProduct(data: any): any {
+    return this.appService.updateProduct(data.id, data.productDto);
   }
 
   @MessagePattern({ cmd: 'delete/products/id' })
-  deleteProduct(@Param('id') id: string): any {
+  deleteProduct(id: string): any {
     return this.appService.deleteProduct(id);
   }
 }

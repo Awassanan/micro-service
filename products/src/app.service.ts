@@ -1,4 +1,4 @@
-import { Body, Injectable, Param } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ProductDto } from './app.dto';
 
 @Injectable()
@@ -9,16 +9,20 @@ export class AppService {
     return this.products;
   }
 
-  getProductById(@Param('id') id: string) {
-    return this.products.find((product) => product.id === id);
+  getProductById(id: string) {
+    const foundProduct = this.products.find((product) => product.id === id);
+    if (!foundProduct) {
+      return null;
+    }
+    return foundProduct;
   }
 
-  createProduct(@Body() productDto: ProductDto) {
+  createProduct(productDto: ProductDto) {
     this.products.push(productDto);
     return productDto;
   }
 
-  updateProduct(@Param('id') id: string, @Body() productDto: ProductDto) {
+  updateProduct(id: string, productDto: ProductDto) {
     const index = this.products.findIndex((product) => product.id === id);
     if (index !== -1) {
       this.products[index] = productDto;
@@ -27,7 +31,7 @@ export class AppService {
     return null;
   }
 
-  deleteProduct(@Param('id') id: string) {
+  deleteProduct(id: string) {
     const index = this.products.findIndex((product) => product.id === id);
     if (index !== -1) {
       const deletedProduct = this.products[index];
