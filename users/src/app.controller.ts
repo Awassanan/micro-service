@@ -25,8 +25,6 @@ export class AppController {
 
   @MessagePattern({ cmd: 'put/users/id' })
   updateUser(data: any): any {
-    console.log('id in update user in user contoller: ', data.id);
-    console.log('dto in update user in user controller: ', data.userDto);
     return this.appService.updateUser(data.id, data.userDto);
   }
 

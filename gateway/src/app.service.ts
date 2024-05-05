@@ -28,8 +28,6 @@ export class AppService {
   }
 
   updateUser(id: string, userDto: UserDto): Observable<any> {
-    console.log('id in update user in gateway service: ', id);
-    console.log('dto in update user in gateway service: ', userDto);
     return this.userClient.send({ cmd: 'put/users/id' }, { id, userDto });
   }
 

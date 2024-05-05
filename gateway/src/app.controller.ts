@@ -25,8 +25,6 @@ export class AppController {
 
   @Get('users/:id')
   getUserById(@Param('id') id: string): Observable<UserDto> {
-    console.log('id in gateway contoller: ' + id);
-    console.log(typeof id);
     return this.appService.getUserById(id);
   }
 
