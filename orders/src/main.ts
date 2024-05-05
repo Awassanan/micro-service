@@ -1,6 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
+import { Logger } from '@nestjs/common';
+
+const logger = new Logger();
+const PORT = 3003;
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -8,10 +12,11 @@ async function bootstrap() {
     {
       transport: Transport.TCP,
       options: {
-        port: 3003,
+        port: PORT,
       },
     },
   );
-  app.listen();
+  await app.listen();
+  logger.log('Microservice is running on port: ' + PORT);
 }
 bootstrap();

@@ -13,12 +13,9 @@ let AppService = class AppService {
         this.users = [];
     }
     getUsers() {
-        console.log(this.users);
         return this.users;
     }
     getUserById(id) {
-        console.log('id in user service: ', id);
-        console.log(this.users.find((user) => user.id === id));
         const foundUser = this.users.find((user) => user.id === id);
         if (!foundUser) {
             return null;
@@ -30,8 +27,6 @@ let AppService = class AppService {
         return userDto;
     }
     updateUser(id, userDto) {
-        console.log('id in update user in user service: ', id);
-        console.log('dto in update user in user service: ', userDto);
         const index = this.users.findIndex((user) => user.id === id);
         if (index !== -1) {
             this.users[index] = userDto;

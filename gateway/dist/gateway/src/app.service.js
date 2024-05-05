@@ -32,8 +32,6 @@ let AppService = class AppService {
         return this.userClient.send({ cmd: 'post/users' }, userDto);
     }
     updateUser(id, userDto) {
-        console.log('id in update user in gateway service: ', id);
-        console.log('dto in update user in gateway service: ', userDto);
         return this.userClient.send({ cmd: 'put/users/id' }, { id, userDto });
     }
     deleteUser(id) {

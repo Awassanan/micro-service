@@ -24,8 +24,6 @@ let AppController = class AppController {
         return this.appService.getUsers();
     }
     getUserById(id) {
-        console.log('id in gateway contoller: ' + id);
-        console.log(typeof id);
         return this.appService.getUserById(id);
     }
     creatUser(userDto) {

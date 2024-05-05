@@ -6,13 +6,10 @@ export class AppService {
   private users: UserDto[] = [];
 
   getUsers(): UserDto[] {
-    console.log(this.users);
     return this.users;
   }
 
   getUserById(id: string): UserDto {
-    console.log('id in user service: ', id);
-    console.log(this.users.find((user) => user.id === id));
     const foundUser = this.users.find((user) => user.id === id);
     if (!foundUser) {
       return null;
@@ -26,8 +23,6 @@ export class AppService {
   }
 
   updateUser(id: string, userDto: UserDto) {
-    console.log('id in update user in user service: ', id);
-    console.log('dto in update user in user service: ', userDto);
     const index = this.users.findIndex((user: UserDto) => user.id === id);
     if (index !== -1) {
       this.users[index] = userDto;
