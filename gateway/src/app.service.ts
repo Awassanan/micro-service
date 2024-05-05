@@ -17,75 +17,78 @@ export class AppService {
     return 'Hello World!';
   }
 
-  getUsers(): Observable<string> {
+  // user
+  getUsers(): Observable<UserDto[]> {
     return this.userClient.send({ cmd: 'get/users' }, {});
   }
 
-  getUserById(@Param('id') id: string): Observable<string> {
+  getUserById(@Param('id') id: string): Observable<UserDto> {
     return this.userClient.send({ cmd: 'get/users/id' }, { id });
   }
 
-  createUser(@Body() userDto: UserDto): Observable<string> {
+  createUser(@Body() userDto: UserDto): Observable<any> {
     return this.userClient.send({ cmd: 'post/users' }, { userDto });
   }
 
   updateUser(
     @Param('id') id: string,
     @Body() userDto: UserDto,
-  ): Observable<string> {
+  ): Observable<any> {
     return this.userClient.send({ cmd: 'put/users/id' }, { id, userDto });
   }
 
-  deleteUser(@Param('id') id: string): Observable<string> {
+  deleteUser(@Param('id') id: string): Observable<any> {
     return this.userClient.send({ cmd: 'delete/users/id' }, { id });
   }
 
-  getProducts(): Observable<string> {
+  // product
+  getProducts(): Observable<ProductDto[]> {
     return this.productClient.send({ cmd: 'get/products' }, {});
   }
 
-  getProductById(@Param('id') id: string): Observable<string> {
+  getProductById(@Param('id') id: string): Observable<ProductDto> {
     return this.productClient.send({ cmd: 'get/products/id' }, { id });
   }
 
-  createProduct(@Body() productDto: ProductDto): Observable<string> {
+  createProduct(@Body() productDto: ProductDto): Observable<any> {
     return this.productClient.send({ cmd: 'post/products' }, { productDto });
   }
 
   updateProduct(
     @Param('id') id: string,
     @Body() productDto: ProductDto,
-  ): Observable<string> {
+  ): Observable<any> {
     return this.productClient.send(
       { cmd: 'put/products/id' },
       { id, productDto },
     );
   }
 
-  deleteProduct(@Param('id') id: string): Observable<string> {
+  deleteProduct(@Param('id') id: string): Observable<any> {
     return this.productClient.send({ cmd: 'delete/products/id' }, { id });
   }
 
-  getOrders(): Observable<string> {
+  //order
+  getOrders(): Observable<OrderDto[]> {
     return this.orderClient.send({ cmd: 'get/orders' }, {});
   }
 
-  getOrderById(@Param('id') id: string): Observable<string> {
+  getOrderById(@Param('id') id: string): Observable<OrderDto> {
     return this.orderClient.send({ cmd: 'get/orders/id' }, { id });
   }
 
-  createOrder(@Body() orderDto: OrderDto): Observable<string> {
+  createOrder(@Body() orderDto: OrderDto): Observable<any> {
     return this.orderClient.send({ cmd: 'post/orders' }, { orderDto });
   }
 
   updateOrder(
     @Param('id') id: string,
     @Body() orderDto: OrderDto,
-  ): Observable<string> {
+  ): Observable<any> {
     return this.orderClient.send({ cmd: 'put/orders/id' }, { id, orderDto });
   }
 
-  deleteOrder(@Param('id') id: string): Observable<string> {
+  deleteOrder(@Param('id') id: string): Observable<any> {
     return this.orderClient.send({ cmd: 'delete/orders/id' }, { id });
   }
 }
